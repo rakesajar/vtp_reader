@@ -8,10 +8,6 @@ import pandas as pd
 import streamlit as st
 
 
-# Globals
-nlp = spacy.load("en_core_web_sm")
-
-
 # Classes
 class PDFdocument:
     def __init__(self, fname):
