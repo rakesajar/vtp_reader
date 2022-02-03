@@ -52,7 +52,7 @@ if document_file is not None:
             from_date = text.split()[-3]
             to_date = text.split()[-2]
             break
-    fields = ['VTP Reference Number', 'Name', 'FIN Number', 'Passport Number', 'From', 'To']
+    fields = ['VTP Reference Number', 'Name', 'FIN Number', 'Passport Number', 'VTP Valid From', 'VTP Valid To']
     values = [ref_number, name, fin_number, passport_number, from_date, to_date]
     result = pd.DataFrame({"Entity": fields, "VALUE": values})
     st.write(result)
