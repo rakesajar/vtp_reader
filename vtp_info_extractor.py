@@ -4,7 +4,6 @@
 
 # Imports
 import fitz
-import spacy
 import pandas as pd
 import streamlit as st
 
