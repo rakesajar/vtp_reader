@@ -31,10 +31,11 @@ if document_file is not None:
     blocks = page.get_text("blocks")
     blocks = [block[4] for block in blocks]
     blocks = [block.strip() for block in blocks if len(block.strip()) > 3]
-    ref_number, name, fin_number, passport_number, from_date, to_date = "", "", "", "", "", ""
+    vtp_date, ref_number, name, fin_number, passport_number, from_date, to_date = "", "", "", "", "", "", ""
     for i in range(3):
         text = blocks[i]
         if text.startswith("Date"):
+            vtp_date = text.split()[1].strip()
             ref_number = text.split()[-1]
             break
     for i in range(2, 5):
@@ -52,7 +53,7 @@ if document_file is not None:
             from_date = text.split()[-3]
             to_date = text.split()[-2]
             break
-    fields = ['VTP Reference Number', 'Name', 'FIN Number', 'Passport Number', 'VTP Valid From', 'VTP Valid To']
-    values = [ref_number, name, fin_number, passport_number, from_date, to_date]
+    fields = ['VTP Issue Date', 'VTP Reference Number', 'Name', 'FIN Number', 'Passport Number', 'VTP Valid From', 'VTP Valid To']
+    values = [vtp_date, ref_number, name, fin_number, passport_number, from_date, to_date]
     result = pd.DataFrame({"Entity": fields, "VALUE": values})
     st.write(result)
