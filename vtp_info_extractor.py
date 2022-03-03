@@ -36,7 +36,7 @@ class VTP:
         """
         self.fname = vtp_filepath
         self.document = PDF(vtp_filepath)
-        self.checks = {'page_check': False, 'title_check': False, 'format_check': False, 'producer_check': False}
+        self.checks = {'page_check': False, 'title_check': False, 'format_check': False, 'producer_check': False, 'non_tampered_check': False}
 
     def basic_checks(self):
         """
@@ -51,6 +51,8 @@ class VTP:
             self.checks['format_check'] = True
         if self.document.meta_data["producer"] == "iText 2.1.7 by 1T3XT":               # PDF Producer check
             self.checks['producer_check'] = True
+        if self.document.meta_data["creationDate"] == self.document.meta_data["modDate"]:  # Created & Modified date check
+            self.checks['non_tampered_check'] = True
         return all(self.checks.values())
 
     def extract_info(self):
