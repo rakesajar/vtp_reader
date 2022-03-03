@@ -118,5 +118,5 @@ if document_file is not None:
         st.success("File Upload Successfull")
     with st.spinner("Extracting Info from VTP... Please Wait..."):
         vtp_doc = VTP(document_file.name)
-    st.table(vtp_doc.extract_info())
+    st.write(vtp_doc.extract_info())
 
